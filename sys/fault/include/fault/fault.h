@@ -65,8 +65,6 @@
  *     fatal failure always triggers a transition to the error state.
  */
 
-#include "debounce/debounce.h"
-
 #define FAULT_STATE_GOOD        0
 #define FAULT_STATE_WARN        1
 #define FAULT_STATE_ERROR       2
@@ -82,7 +80,6 @@ struct fault_recorder {
     void *arg;
 
     /* State. */
-    struct debouncer deb;
 };
 
 typedef void fault_thresh_fn(int domain_id, int prev_state, int state,
