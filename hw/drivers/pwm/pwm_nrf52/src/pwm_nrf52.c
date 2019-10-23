@@ -21,7 +21,7 @@
 #include <string.h>
 #include <errno.h>
 #include "os/mynewt.h"
-#include <bsp.h>
+#include "bsp/bsp.h"
 #include <hal/hal_bsp.h>
 #include <pwm/pwm.h>
 #include <mcu/cmsis_nvic.h>
