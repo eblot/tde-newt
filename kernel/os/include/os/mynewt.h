@@ -20,10 +20,13 @@
 #ifndef H_OS_MYNEWT_
 #define H_OS_MYNEWT_
 
+#ifndef static_assert
+# define static_assert _Static_assert
+#endif
+
 #include "syscfg/syscfg.h"
 #include "sysdown/sysdown.h"
 #include "sysinit/sysinit.h"
-#include "sysflash/sysflash.h"
 #include "os/os.h"
 #include "defs/error.h"
 #include "sys/debug_panic.h"
