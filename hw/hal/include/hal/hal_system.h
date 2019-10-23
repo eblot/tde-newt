@@ -28,6 +28,8 @@
 #ifndef H_HAL_SYSTEM_
 #define H_HAL_SYSTEM_
 
+#include <stdint.h>
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -40,7 +42,7 @@ void hal_system_reset(void) __attribute((noreturn));
 /**
  * Called by bootloader to start loaded program.
  */
-void hal_system_start(void *img_start) __attribute((noreturn));
+void hal_system_start(uint32_t sp, uint32_t pc) __attribute((noreturn));
 
 /**
  * Called by split app loader to start the app program.

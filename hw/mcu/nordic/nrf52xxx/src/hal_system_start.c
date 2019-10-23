@@ -28,17 +28,15 @@
  * @param hdr                   The header for the image to boot.
  */
 void __attribute__((naked))
-hal_system_start(void *img_start)
+hal_system_start(uint32_t sp, uint32_t pc)
 {
-    uint32_t *img_data = img_start;
-
     asm volatile (".syntax unified        \n"
                   /* 1st word is stack pointer */
-                  "    msr  msp, %0       \n"
+                  "    msr  msp, r0       \n"
                   /* 2nd word is a reset handler (image entry) */
-                  "    bx   %1            \n"
+                  "    bx   r1            \n"
                   : /* no output */
-                  : "r" (img_data[0]), "r" (img_data[1]));
+                  : );
 }
 
 /**
@@ -64,5 +62,6 @@ hal_system_restart(void *img_start)
     }
     (void)sr;
 
-    hal_system_start(img_start);
+    hal_system_start(((const uint32_t *)img_start)[0],
+                     ((const uint32_t *)img_start)[1]);
 }
