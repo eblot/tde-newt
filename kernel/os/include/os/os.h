@@ -85,14 +85,16 @@ int os_started(void);
  */
 #define OS_IDLE_PRIO (0xff)
 
+#if MYNEWT_VAL((x)) != (x)
 /**
  * Main task priority, defined by sysconfig.
  */
-#define OS_MAIN_TASK_PRIO       MYNEWT_VAL(OS_MAIN_TASK_PRIO)
+# define OS_MAIN_TASK_PRIO       MYNEWT_VAL(OS_MAIN_TASK_PRIO)
 /**
  * Main task stack size, defined by sysconfig.
  */
-#define OS_MAIN_STACK_SIZE      MYNEWT_VAL(OS_MAIN_STACK_SIZE)
+# define OS_MAIN_STACK_SIZE      MYNEWT_VAL(OS_MAIN_STACK_SIZE)
+#endif
 
 /**
  * Initialize the OS, including memory areas and housekeeping functions.

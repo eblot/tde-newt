@@ -24,7 +24,7 @@
 #include "mcu/cmsis_nvic.h"
 
 /* The OS scheduler requires a low-frequency timer. */
-#if MYNEWT_VAL(OS_SCHEDULING) && !MYNEWT_VAL(MCU_LFCLK_SOURCE)
+#if MYNEWT_VAL(OS_SCHEDULING) && !defined(MCU_LFCLK_SOURCE)
     #error The OS scheduler requires a low-frequency timer; configure MCU_LFCLK_SOURCE
 #endif
 

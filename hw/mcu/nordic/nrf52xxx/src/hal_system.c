@@ -74,7 +74,7 @@ hal_debugger_connected(void)
 void
 hal_system_clock_start(void)
 {
-#if MYNEWT_VAL(MCU_LFCLK_SOURCE)
+#if defined(MCU_LFCLK_SOURCE)
     uint32_t regmsk;
     uint32_t regval;
     uint32_t clksrc;
