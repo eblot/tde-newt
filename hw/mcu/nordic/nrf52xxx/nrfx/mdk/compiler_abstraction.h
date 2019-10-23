@@ -132,11 +132,25 @@ POSSIBILITY OF SUCH DAMAGE.
 
     #define GET_SP()                gcc_current_sp()
 
-    static inline unsigned int gcc_current_sp(void)
-    {
-        register unsigned sp __ASM("sp");
-        return sp;
-    }
+    #if !defined(__clang__)
+         #define GET_SP()                gcc_current_sp()
+
+         static inline unsigned int gcc_current_sp(void)
+         {
+             register unsigned sp __ASM("sp");
+             return sp;
+         }
+   #else
+         #define GET_SP()                clang_current_sp()
+         #pragma clang diagnostic push
+         #pragma clang diagnostic ignored "-Wbad-function-cast"
+         #pragma clang diagnostic ignored "-Wint-conversion"
+         static inline unsigned int clang_current_sp(void)
+         {
+             return __builtin___get_unsafe_stack_ptr();
+         }
+         #pragma clang diagnostic pop
+   #endif
 
 #elif defined   ( __TASKING__ )
 
